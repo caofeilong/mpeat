@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div v-for="(item,i) in eatList" :key="i" class="inputItem">
-      <input placeholder="商家或菜品" type="text" v-model="item.value"/>
+      <input placeholder="商家或菜品" auto-focus type="text" v-model="item.value"/>
       <button type="warn" @click="remove(i)">删除</button>
     </div>
     <div class="add">
