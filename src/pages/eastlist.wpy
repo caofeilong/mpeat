@@ -1,0 +1,93 @@
+<template>
+  <div class="main">
+    <div v-for="(item,i) in eatList" :key="i" class="inputItem">
+      <input placeholder="商家或菜品" type="text" v-model="item.value"/>
+      <button type="warn" @click="remove(i)">删除</button>
+    </div>
+    <div class="add">
+      <button @click="add">添加</button>
+    </div>
+  </div>
+</template>
+<script>
+  import wepy from '@wepy/core'
+
+  wepy.page({
+    data: {
+      eatList: [
+        { value: '和府捞面' },
+        { value: '汉堡王' },
+        { value: '油泼面' },
+        { value: '米线' },
+        { value: '诸葛孔明面' }
+      ]
+    },
+    onShow() {
+      const eatList = wx.getStorageSync('eatList')
+      if (eatList) {
+        this.eatList = eatList.split(',').map(item => ({ value: item }))
+      }
+    },
+    methods: {
+      add() {
+        this.eatList.push({ value: '' })
+      },
+      remove(index) {
+        this.eatList.splice(index, 1)
+      }
+    },
+    watch: {
+      eatList: {
+        handler() {
+          const list = this.eatList.reduce((ac, item) => {
+            if (item.value) {
+              ac.push(item.value)
+            }
+            return ac
+          }, [])
+          wx.setStorage({
+            key: 'eatList',
+            data: list.join(',')
+          })
+        },
+        deep: true
+      }
+    }
+  })
+</script>
+
+<style lang="less">
+
+  .inputItem {
+    display: flex;
+    flex-direction: row;
+    padding: 10rpx 30rpx;
+
+    input {
+      flex: 1;
+      border: 1px solid;
+      border-color: #999;
+      border-radius: 20rpx;
+      margin-right: 20rpx;
+      color: #999;
+      font-size: 30rpx;
+      padding: 5rpx 20rpx;
+    }
+
+    button {
+      width: 150rpx;
+      font-size: 24rpx;
+    }
+  }
+
+  .add {
+    padding: 10rpx 30rpx;
+
+    button {
+      height: 70rpx;
+      font-size: 32rpx;
+      background: #0071e3;
+      color: #fff;
+    }
+  }
+</style>

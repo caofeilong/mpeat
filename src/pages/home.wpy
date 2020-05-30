@@ -1,0 +1,111 @@
+<template>
+  <div class="head_layout">
+    <div class="head_icon">
+      <open-data type="userAvatarUrl"></open-data>
+    </div>
+    <open-data type="userNickName" lang="zh_CN"></open-data>
+  </div>
+  <div class="content">
+    {{eatText}}
+  </div>
+  <button class="draw" @click="draw">
+    {{btnText}}
+  </button>
+  <a class="tomenu"  hover-class="none" url="eastlist">
+    编辑菜单
+  </a>
+</template>
+<style lang="less">
+
+  .head_layout {
+    margin-top: 100rpx;
+    text-align: center;
+    font-size: 32rpx;
+    color: #666;
+  }
+
+  .head_icon {
+    margin: auto;
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 100rpx;
+    overflow: hidden;
+  }
+
+  .content {
+    color: #333;
+    font-size: 40rpx;
+    text-align: center;
+    margin-top: 100rpx;
+    margin-bottom: 100rpx;
+  }
+
+  .draw {
+    margin: auto;
+    margin-bottom: 40rpx;
+    width: 200rpx;
+    font-size: 32rpx;
+    background: #0071e3;
+    color: #fff;
+  }
+
+  .tomenu{
+    /*border: none;*/
+    /*background: none;*/
+    color:#06c;
+    font-size: 32rpx;
+    width: 200rpx;
+    text-align: center;
+    margin: auto;
+  }
+</style>
+
+<script>
+  import wepy from '@wepy/core'
+
+  wepy.page({
+    data: {
+      eatText: '今天吃什么？',
+      btnText: '点击开始',
+      eatList: [
+        '和府捞面',
+        '汉堡王',
+        '油泼面',
+        '米线',
+        '诸葛孔明面'
+      ]
+    },
+    onShow() {
+      const eatList = wx.getStorageSync('eatList')
+      if (eatList) {
+        this.eatList = eatList.split(',')
+      }
+    },
+    // 选项
+    methods: {
+      draw() {
+        if (this.si) {
+          clearInterval(this.si)
+          this.si = null
+          this.btnText = '再来一次'
+          return
+        }
+        this.btnText = '暂停'
+        this.si = setInterval(() => {
+          const index = this.randomNum(0, this.eatList.length - 1)
+          this.eatText = this.eatList[index]
+        }, 60)
+      },
+      randomNum(minNum, maxNum) {
+        return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10)
+      }
+    }
+  })
+</script>
+<config>
+  {
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "吃什么",
+  }
+</config>
