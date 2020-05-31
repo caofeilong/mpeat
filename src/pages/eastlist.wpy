@@ -1,11 +1,11 @@
 <template>
   <div class="main">
-    <div v-for="(item,i) in eatList" :key="i" class="inputItem">
-      <input placeholder="商家或菜品" auto-focus type="text" v-model="item.value"/>
-      <button type="warn" @click="remove(i)">删除</button>
-    </div>
     <div class="add">
       <button @click="add">添加</button>
+    </div>
+    <div v-for="(item,i) in eatList" :key="i" class="inputItem">
+      <input  placeholder="商家或菜品" type="text" v-model="item.value"/>
+      <button type="warn" @click="remove(i)">删除</button>
     </div>
   </div>
 </template>
@@ -15,11 +15,11 @@
   wepy.page({
     data: {
       eatList: [
-        { value: '和府捞面' },
-        { value: '汉堡王' },
+        { value: '盖饭' },
+        { value: '面条' },
         { value: '油泼面' },
-        { value: '米线' },
-        { value: '诸葛孔明面' }
+        { value: '汉堡' },
+        { value: '刀削面' }
       ]
     },
     onShow() {
@@ -79,11 +79,19 @@
       font-size: 24rpx;
     }
   }
+  .main{
+    padding-top: 40px;
+  }
 
   .add {
-    padding: 10rpx 30rpx;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
 
     button {
+      border-radius: 0px;
       height: 70rpx;
       font-size: 32rpx;
       background: #0071e3;

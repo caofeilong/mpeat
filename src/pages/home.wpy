@@ -11,7 +11,7 @@
   <button class="draw" @click="draw">
     {{btnText}}
   </button>
-  <a class="tomenu"  hover-class="none" url="eastlist">
+  <a class="tomenu" hover-class="none" url="eastlist">
     编辑菜单
   </a>
 </template>
@@ -49,10 +49,10 @@
     color: #fff;
   }
 
-  .tomenu{
+  .tomenu {
     /*border: none;*/
     /*background: none;*/
-    color:#06c;
+    color: #06c;
     font-size: 32rpx;
     width: 200rpx;
     text-align: center;
@@ -68,12 +68,17 @@
       eatText: '今天吃什么？',
       btnText: '点击开始',
       eatList: [
-        '和府捞面',
-        '汉堡王',
+        '盖饭',
+        '面条',
         '油泼面',
-        '米线',
-        '诸葛孔明面'
+        '汉堡',
+        '刀削面'
       ]
+    },
+    onLoad() {
+      wx.showShareMenu({
+        withShareTicket: true
+      })
     },
     onShow() {
       const eatList = wx.getStorageSync('eatList')

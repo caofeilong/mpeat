@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2bcb377-1c1c-47c2-9539-7479e81621c9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/eastlist.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/eastlist.wpy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home.wpy" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home.wpy" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +53,7 @@
       <option name="presentableId" value="Default" />
       <updated>1590801673436</updated>
       <workItem from="1590801674813" duration="1645000" />
-      <workItem from="1590803549071" duration="7371000" />
+      <workItem from="1590803549071" duration="9443000" />
     </task>
     <servers />
   </component>
